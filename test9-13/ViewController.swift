@@ -12,25 +12,29 @@ class ViewController: UIViewController {
     
     let cellId = "cellId"
     
-    lazy var tableView: UITableView = {
-        let tv = UITableView()
-        tv.delegate = self
-        tv.dataSource = self
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        return tv
-    }()
+   let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+       configureTableView()
+
+    }
+    
+    func configureTableView() {
         view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(tableViewCell.self, forCellReuseIdentifier: cellId)
-        
+        setTableView()
+    }
+    
+    func setTableView() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-
     }
     
     
